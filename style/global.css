@@ -1,0 +1,142 @@
+:root {
+  /* color */
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #bdbdbd;
+  --color-dark-grey: #4d4d4d;
+  --color-grey: #616161;
+  --color-light-grey: #7c7979;
+  --color-blue: #313daa;
+  --color-light-blue: #0079ff;
+  --color-black: #000000;
+  --color-border: #d9d9d9;
+
+  /* Font Size */
+  --font-xl: 32px;
+  --font-lg: 24px;
+  --font-md: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+
+  /* Font Weight */
+  --weight-regular: 400;
+  --weight-semi-bold: 600;
+  --weight-bold: 700;
+}
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background: var(--color-dark-white);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+input {
+  appearance: none;
+  border-radius: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 820px;
+  height: 100%;
+  background: var(--color-light-white);
+  border-radius: 14px;
+}
+
+/* Header */
+.banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 18px;
+}
+
+.banner__title {
+  font-size: var(--font-lg);
+  color: var(--color-light-blue);
+}
+
+.control-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: var(--weight-semi-bold);
+}
+
+.create-button {
+  background-color: var(--color-light-blue);
+  color: var(--color-white);
+  text-align: center;
+  user-select: none;
+  padding: 0.5em 2.5em;
+  border-radius: 4px;
+}
+
+.document {
+  flex: 1;
+}
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-xs);
+  font-weight: var(--weight-semi-bold);
+  text-align: center;
+  padding: 8px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* font size */
+    --font-xl: 40px;
+    --font-lg: 32px;
+    --font-tg: 24px;
+    --font-md: 18px;
+    --font-sm: 16px;
+    --font-xs: 14px;
+  }
+}
