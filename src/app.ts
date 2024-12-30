@@ -8,7 +8,6 @@ class App {
     this.page = new PageComponent();
 
     this.page.attachTo(appRoot);
-    console.log("test");
 
     const image = new ImageComponent(
       "Image Title",
