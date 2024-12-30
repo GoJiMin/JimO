@@ -1,8 +1,8 @@
-export function qs(
+export function qs<T extends HTMLElement>(
   selector: string,
   scope: Document | HTMLElement = document
-): HTMLElement {
-  const element = scope.querySelector<HTMLElement>(selector);
+): T {
+  const element = scope.querySelector<T>(selector);
 
   if (!element) throw new Error(`Element not found in ${selector}`);
 
