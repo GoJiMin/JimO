@@ -1,9 +1,10 @@
-import { ImageComponent } from "./components/ImageComponent.js";
-import { PageComponent } from "./components/PageComponent.js";
+import { Component } from "./components/component.js";
+import { ImageComponent } from "./components/item/image.js";
+import { PageComponent } from "./components/page/page.js";
 import { qs } from "./utils/helper.js";
 
 class App {
-  private readonly page: PageComponent;
+  private readonly page: Component;
   constructor(appRoot: HTMLElement) {
     this.page = new PageComponent();
 

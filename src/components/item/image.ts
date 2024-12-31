@@ -1,20 +1,18 @@
-import { qs } from "../utils/helper.js";
+import { qs } from "../../utils/helper.js";
+import { BaseComponent } from "../component.js";
 
-export class ImageComponent {
-  private element: HTMLElement;
+export class ImageComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
-    const template = document.createElement("template");
-
-    template.innerHTML = `
+    super(
+      `
       <section class="image">
         <div class="image__holder">
             <img class="image__thumbnail">
         </div>
         <p class="image__title"></p>
       </section>
-    `;
-
-    this.element = template.content.firstElementChild! as HTMLElement;
+    `
+    );
 
     const imageElement = qs<HTMLImageElement>(
       ".image__thumbnail",
@@ -30,9 +28,5 @@ export class ImageComponent {
     );
 
     titleElement.textContent = title;
-  }
-
-  attachTo(parent: HTMLElement, position: InsertPosition = "afterbegin") {
-    parent.insertAdjacentElement(position, this.element);
   }
 }
