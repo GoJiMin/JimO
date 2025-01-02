@@ -2,6 +2,7 @@ import { Component } from "./components/component.js";
 import { ImageComponent } from "./components/item/image.js";
 import { NoteComponent } from "./components/item/note.js";
 import { TodoComponent } from "./components/item/todo.js";
+import { VideoComponent } from "./components/item/video.js";
 import { PageComponent } from "./components/page/page.js";
 import { qs } from "./utils/helper.js";
 
@@ -30,6 +31,13 @@ class App {
     ]);
 
     todo.attachTo(appRoot);
+
+    const video = new VideoComponent(
+      "Video Title",
+      "https://www.youtube.com/embed/F_89_VYZGFc"
+    );
+
+    video.attachTo(appRoot);
   }
 }
 
