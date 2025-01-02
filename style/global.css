@@ -60,10 +60,10 @@ button {
   cursor: pointer;
 }
 
-input {
+/* input {
   appearance: none;
   border-radius: 0;
-}
+} */
 
 input:focus {
   outline: none;

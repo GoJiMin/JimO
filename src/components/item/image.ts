@@ -9,7 +9,7 @@ export class ImageComponent extends BaseComponent<HTMLElement> {
         <div class="image__holder">
             <img class="image__thumbnail">
         </div>
-        <p class="image__title"></p>
+        <h2 class="image__title"></h2>
       </section>
     `
     );
@@ -22,10 +22,7 @@ export class ImageComponent extends BaseComponent<HTMLElement> {
     imageElement.src = url;
     imageElement.alt = title;
 
-    const titleElement = qs<HTMLParagraphElement>(
-      ".image__title",
-      this.element
-    );
+    const titleElement = qs<HTMLHeadElement>(".image__title", this.element);
 
     titleElement.textContent = title;
   }
