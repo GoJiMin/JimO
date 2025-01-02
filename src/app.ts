@@ -34,7 +34,7 @@ class App {
 
     const video = new VideoComponent(
       "Video Title",
-      "https://www.youtube.com/embed/F_89_VYZGFc"
+      "https://youtu.be/Xc8Or-B2sTE"
     );
 
     video.attachTo(appRoot);
