@@ -11,7 +11,7 @@ class App {
   constructor(appRoot: HTMLElement) {
     this.page = new PageComponent();
 
-    this.page.attachTo(appRoot);
+    this.page.attachTo(appRoot, "beforeend");
 
     const image = new ImageComponent(
       "Image Title",

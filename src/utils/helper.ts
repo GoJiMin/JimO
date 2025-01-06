@@ -8,3 +8,11 @@ export function qs<T extends HTMLElement>(
 
   return element;
 }
+
+export function on<T extends HTMLElement>(
+  target: T,
+  eventName: keyof GlobalEventHandlersEventMap & keyof T,
+  handler: () => void
+) {
+  target.addEventListener(eventName, handler);
+}
