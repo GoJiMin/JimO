@@ -1,15 +1,17 @@
-import { on, qs } from "../../utils/helper.js";
+import { qs } from "../../utils/helper.js";
 import { BaseComponent, Component } from "../component.js";
 
 export interface Composable {
   addChild(child: Component): void;
 }
 
+type OnCloseListener = () => void;
+
 class PageItemComponent
   extends BaseComponent<HTMLElement>
   implements Composable
 {
-  private removeButton: HTMLButtonElement;
+  private onCloseListener?: OnCloseListener;
 
   constructor() {
     super(
@@ -23,13 +25,11 @@ class PageItemComponent
     `
     );
 
-    this.removeButton = qs<HTMLButtonElement>(".close", this.element);
+    const closeButton = qs<HTMLButtonElement>(".close", this.element);
 
-    this.bindEvents();
-  }
-
-  bindEvents() {
-    on<HTMLButtonElement>(this.removeButton, "click", () => this.remove());
+    closeButton.onclick = () => {
+      this.onCloseListener && this.onCloseListener();
+    };
   }
 
   addChild(child: Component): void {
@@ -37,8 +37,8 @@ class PageItemComponent
     child.attachTo(container, "beforeend");
   }
 
-  remove() {
-    this.element.remove();
+  setOnCloseListener(listener: OnCloseListener) {
+    this.onCloseListener = listener;
   }
 }
 
@@ -54,5 +54,8 @@ export class PageComponent
     const item = new PageItemComponent();
     item.addChild(child);
     item.attachTo(this.element, "beforeend");
+    item.setOnCloseListener(() => {
+      item.removeFrom(this.element);
+    });
   }
 }
