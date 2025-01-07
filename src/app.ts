@@ -1,4 +1,5 @@
 import { Component } from "./components/component.js";
+import { InputDialog } from "./components/dialog/dialog.js";
 import { ImageComponent } from "./components/item/image.js";
 import { NoteComponent } from "./components/item/note.js";
 import { TodoComponent } from "./components/item/todo.js";
@@ -8,7 +9,7 @@ import {
   PageComponent,
   PageItemComponent,
 } from "./components/page/page.js";
-import { qs } from "./utils/helper.js";
+import { on, qs } from "./utils/helper.js";
 
 class App {
   private readonly page: Component & Composable;
@@ -38,6 +39,23 @@ class App {
       "https://youtu.be/Xc8Or-B2sTE"
     );
     this.page.addChild(video);
+
+    const addImageBtn = qs<HTMLButtonElement>("#new-image");
+    on(addImageBtn, "click", () => {
+      const dialog = new InputDialog();
+
+      dialog.setOnCloseListener(() => {
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.setOnSubmitListener(() => {
+        // Todo : 추가 버튼을 클릭하면 아이템 요소를 생성해 페이지 컴포넌트에 추가한다.
+
+        dialog.removeFrom(document.body);
+      });
+
+      dialog.attachTo(document.body, "beforeend");
+    });
   }
 }
 
