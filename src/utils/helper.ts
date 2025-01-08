@@ -9,10 +9,12 @@ export function qs<T extends HTMLElement>(
   return element;
 }
 
-export function on<T extends HTMLElement>(
+export function on<T extends HTMLElement, E extends Event>(
   target: T,
   eventName: keyof GlobalEventHandlersEventMap & keyof T,
-  handler: () => void
+  handler: (this: T, ev: E) => void
 ) {
-  target.addEventListener(eventName, handler);
+  const listener: EventListener = (event) => handler.call(target, event as E);
+
+  target.addEventListener(eventName, listener);
 }

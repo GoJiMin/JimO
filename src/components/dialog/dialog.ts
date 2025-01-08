@@ -10,8 +10,8 @@ export class InputDialog
   implements Composable
 {
   private closeBtn: HTMLButtonElement;
-  private addBtn: HTMLButtonElement;
   private backDrop: HTMLDivElement;
+  private formElement: HTMLFormElement;
 
   private closeListener?: OnCloseListener;
   private submitListener?: OnSubmitListener;
@@ -23,38 +23,39 @@ export class InputDialog
           <div class="dialog__backdrop"></div>
           <div class="dialog__container">
             <button class="close">X</button>
-            <div class="dialog__body"></div>
-            <button class="dialog__submit">추가</button>
+            <form class="dialog__form" id="dialog__form"></form>
+            <button class="dialog__submit" form="dialog__form">추가</button>
           </div>
         </section>
       `
     );
 
     this.closeBtn = qs<HTMLButtonElement>(".close", this.element);
-    this.addBtn = qs<HTMLButtonElement>(".dialog__submit", this.element);
     this.backDrop = qs<HTMLDivElement>(".dialog__backdrop", this.element);
+    this.formElement = qs<HTMLFormElement>(".dialog__form", this.element);
 
     this.bindEvents();
   }
 
   private bindEvents() {
-    on<HTMLButtonElement>(this.closeBtn, "click", () => {
-      this.closeListener && this.closeListener();
-    });
+    const closeHandler = () => this.closeListener && this.closeListener();
 
-    on<HTMLButtonElement>(this.addBtn, "click", () => {
-      this.submitListener && this.submitListener();
-    });
+    on<HTMLButtonElement, MouseEvent>(this.closeBtn, "click", closeHandler);
+    on<HTMLDivElement, MouseEvent>(this.backDrop, "click", closeHandler);
 
-    on<HTMLDivElement>(this.backDrop, "click", () => {
-      this.closeListener && this.closeListener();
-    });
+    on<HTMLFormElement, SubmitEvent>(this.formElement, "submit", (event) =>
+      this.handleSubmit(event)
+    );
   }
 
   addChild(child: Component): void {
-    const body = qs<HTMLDivElement>(".dialog__body", this.element);
+    child.attachTo(this.formElement, "beforeend");
+  }
 
-    child.attachTo(body, "beforeend");
+  private handleSubmit(event: SubmitEvent) {
+    event.preventDefault();
+
+    this.submitListener && this.submitListener();
   }
 
   setOnCloseListener(listener: OnCloseListener) {
