@@ -1,7 +1,11 @@
 import { qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
+import { TextData } from "../dialog.js";
 
-export class TextSectionInput extends BaseComponent<HTMLDivElement> {
+export class TextSectionInput
+  extends BaseComponent<HTMLDivElement>
+  implements TextData
+{
   constructor() {
     super(`
        <div>
@@ -29,7 +33,7 @@ export class TextSectionInput extends BaseComponent<HTMLDivElement> {
   }
 
   get body() {
-    const element = qs<HTMLInputElement>("[name=body]", this.element);
+    const element = qs<HTMLTextAreaElement>("[name=body]", this.element);
 
     return element.value;
   }

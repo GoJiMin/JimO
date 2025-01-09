@@ -1,7 +1,11 @@
 import { qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
+import { MediaData } from "../dialog.js";
 
-export class MediaSectionInput extends BaseComponent<HTMLDivElement> {
+export class MediaSectionInput
+  extends BaseComponent<HTMLDivElement>
+  implements MediaData
+{
   constructor() {
     super(`
        <div>
