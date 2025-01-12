@@ -6,8 +6,10 @@ import {
 } from "./components/dialog/dialog.js";
 import { MediaSectionInput } from "./components/dialog/input/media-input.js";
 import { TextSectionInput } from "./components/dialog/input/text-input.js";
+import { TodoSectionInput } from "./components/dialog/input/todo-input.js";
 import { ImageComponent } from "./components/item/image.js";
 import { NoteComponent } from "./components/item/note.js";
+import { TodoComponent } from "./components/item/todo.js";
 import { VideoComponent } from "./components/item/video.js";
 import {
   Composable,
@@ -45,10 +47,11 @@ class App {
       (input: TextSectionInput) => new NoteComponent(input.title, input.body)
     );
 
-    // Todo: 투두를 추가하기 위한 input 구현.
-    // this.bindElementToDialog<TextSectionInput>(
-    //   "#new-todo",
-    // );
+    this.bindElementToDialog<TodoSectionInput>(
+      "#new-todo",
+      TodoSectionInput,
+      (input: TodoSectionInput) => new TodoComponent(input.title, input.tasks)
+    );
   }
 
   private bindElementToDialog<T extends (MediaData | TextData) & Component>(
@@ -58,7 +61,7 @@ class App {
   ) {
     const addBtn = qs<HTMLButtonElement>(selector);
 
-    on(addBtn, "click", () => {
+    on<HTMLButtonElement, MouseEvent>(addBtn, "click", () => {
       const dialog = new InputDialog();
       const input = new inputComponent();
 

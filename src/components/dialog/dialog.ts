@@ -12,7 +12,8 @@ export interface MediaData {
 
 export interface TextData {
   title: string;
-  body: string;
+  body?: string;
+  tasks?: string[];
 }
 
 export class InputDialog

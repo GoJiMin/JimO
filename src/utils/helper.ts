@@ -9,6 +9,18 @@ export function qs<T extends HTMLElement>(
   return element;
 }
 
+export function qsAll<T extends HTMLElement>(
+  selector: string,
+  scope: Document | HTMLElement = document
+): T[] {
+  const elements = scope.querySelectorAll<T>(selector);
+
+  if (elements.length === 0)
+    throw new Error(`Elements not found in ${selector}`);
+
+  return Array.from(elements);
+}
+
 export function on<T extends HTMLElement, E extends Event>(
   target: T,
   eventName: keyof GlobalEventHandlersEventMap & keyof T,
