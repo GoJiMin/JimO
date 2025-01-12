@@ -8,14 +8,15 @@ export class MediaSectionInput
 {
   constructor() {
     super(`
-       <div>
+       <div class="input__section">
+         <p class="input__title">Add Media</p>
          <label>
            Title
-           <input type="text" name="title" />
+           <input type="text" placeholder="please enter a title..." name="title" />
          </label>
          <label>
-           Url
-           <input type="text" name="url" />
+           URL
+           <input type="text" placeholder="please enter url..." name="url" />
          </label>
        </div>
     `);

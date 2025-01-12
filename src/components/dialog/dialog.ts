@@ -33,9 +33,9 @@ export class InputDialog
         <section class="dialog">
           <div class="dialog__backdrop"></div>
           <div class="dialog__container">
-            <button class="close">X</button>
+            <button class="close">&times;</button>
             <form class="dialog__form" id="dialog__form"></form>
-            <button class="dialog__submit" form="dialog__form">추가</button>
+            <button class="dialog__submit" form="dialog__form">ADD</button>
           </div>
         </section>
       `

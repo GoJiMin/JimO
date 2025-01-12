@@ -11,15 +11,16 @@ export class TodoSectionInput
 
   constructor() {
     super(`
-       <div class="todo__section">
+       <div class="input__section">
+         <p class="input__title">Add To-Do</p>
          <label>
            Title
-           <input type="text" name="title" autofocus />
+           <input type="text" placeholder="please enter a title..." name="title" autofocus />
          </label>
          <ul class="todo__inputContainer">
            <li class="todo__inputItem">
-             <input type="text" placeholder="할 일을 입력해보세요!" />
-             <button type="button" class="todo-remove">-</button>
+             <input type="text" placeholder="please enter something to-do..." />
+             <button type="button" class="todo-remove">🗑</button>
            </li>
          </ul>
          <button type="button" class="todo-add">+</button>
@@ -44,8 +45,8 @@ export class TodoSectionInput
 
     newItem.innerHTML = `
       <li class="todo__inputItem">
-        <input type="text" placeholder="할 일을 입력해보세요!" />
-        <button type="button" class="todo-remove">-</button>
+        <input type="text" placeholder="please enter something to-do..." />
+        <button type="button" class="todo-remove">🗑</button>
       </li>
     `;
 

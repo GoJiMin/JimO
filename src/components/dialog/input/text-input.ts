@@ -8,14 +8,15 @@ export class TextSectionInput
 {
   constructor() {
     super(`
-       <div>
+       <div class="input__section">
+         <p class="input__title">Add Note</p>
          <label>
            Title
-           <input type="text" name="title" autofocus />
+           <input type="text" name="title" placeholder="please enter a title..." autofocus />
          </label>
          <label>
-           Body
-           <input type="text" name="body" />
+           Content
+           <input type="text" placeholder="please enter the contents..." name="body" />
          </label>
        </div>
     `);

@@ -61,10 +61,10 @@ button {
   cursor: pointer;
 }
 
-/* input {
-  appearance: none;
-  border-radius: 0;
-} */
+input {
+  border: none;
+  padding: 8px;
+}
 
 input:focus {
   outline: none;
@@ -111,6 +111,7 @@ input:focus {
 
 .create-button {
   background-color: var(--color-light-blue);
+  border: 2px solid var(--color-light-blue);
   color: var(--color-white);
   text-align: center;
   user-select: none;
@@ -173,11 +174,82 @@ input:focus {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  padding: 0.6rem;
+  position: relative;
+  padding: 1rem;
   width: 30rem;
   background-color: var(--color-light-white);
   border: 1px solid var(--color-border);
   border-radius: 8px;
+}
+
+.close {
+  font-size: var(--font-lg);
+  position: absolute;
+  top: 6px;
+  right: 12px;
+}
+
+.dialog__form {
+  margin-bottom: 12px;
+}
+
+.dialog__submit {
+  background: var(--color-light-blue);
+  color: var(--color-white);
+  padding: 4px;
+  border-radius: 6px;
+  border: 2px solid var(--color-light-blue);
+  text-align: center;
+  font-weight: var(--weight-semi-bold);
+}
+
+.input__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input__title {
+  font-size: var(--font-tg);
+  font-weight: var(--weight-semi-bold);
+  text-align: center;
+}
+
+.input__section label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.todo__inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo__inputItem {
+  display: flex;
+  align-items: center;
+  background: var(--color-white);
+}
+
+.todo__inputItem input {
+  width: 100%;
+}
+
+.todo-add {
+  font-size: var(--font-md);
+  text-align: center;
+  color: var(--color-dark-grey);
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.todo-remove {
+  margin-left: 6px;
+  padding: 0 6px;
+  font-size: 16px;
+  border-left: 1px solid var(--color-border);
 }
 
 @media (min-width: 768px) {
@@ -186,8 +258,20 @@ input:focus {
     --font-xl: 40px;
     --font-lg: 32px;
     --font-tg: 24px;
-    --font-md: 18px;
+    --font-md: 20px;
     --font-sm: 16px;
     --font-xs: 14px;
+  }
+
+  .dialog__submit:hover {
+    background: var(--color-light-white);
+    border: 2px solid var(--color-light-blue);
+    color: var(--color-light-blue);
+  }
+
+  .create-button:hover {
+    color: var(--color-light-blue);
+    background-color: var(--color-light-white);
+    border: 2px solid var(--color-light-blue);
   }
 }
