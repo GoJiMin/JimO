@@ -27,13 +27,13 @@ export class PageItemComponent
       <li class="page-item">
         <section class="page-item__body"></section>
         <div class="page-item__controls">
-          <button class="close">X</button>
+          <button class="item__close">&times;</button>
         </div>
       </li>
     `
     );
 
-    const closeButton = qs<HTMLButtonElement>(".close", this.element);
+    const closeButton = qs<HTMLButtonElement>(".item__close", this.element);
 
     closeButton.onclick = () => {
       this.onCloseListener && this.onCloseListener();
