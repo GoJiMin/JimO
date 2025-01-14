@@ -23,7 +23,7 @@ export function qsAll<T extends HTMLElement>(
 
 export function on<T extends HTMLElement, E extends Event>(
   target: T,
-  eventName: keyof GlobalEventHandlersEventMap & keyof T,
+  eventName: keyof HTMLElementEventMap,
   handler: (this: T, ev: E) => void
 ) {
   const listener: EventListener = (event) => handler.call(target, event as E);

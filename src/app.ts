@@ -4,6 +4,7 @@ import {
   MediaData,
   TextData,
 } from "./components/dialog/dialog.js";
+import { ImageSectionInput } from "./components/dialog/input/image-input.js";
 import { MediaSectionInput } from "./components/dialog/input/media-input.js";
 import { TextSectionInput } from "./components/dialog/input/text-input.js";
 import { TodoSectionInput } from "./components/dialog/input/todo-input.js";
@@ -29,10 +30,10 @@ class App {
 
     this.page.attachTo(appRoot, "beforeend");
 
-    this.bindElementToDialog<MediaSectionInput>(
+    this.bindElementToDialog<ImageSectionInput>(
       "#new-image",
-      MediaSectionInput,
-      (input: MediaSectionInput) => new ImageComponent(input.title, input.url)
+      ImageSectionInput,
+      (input: ImageSectionInput) => new ImageComponent(input.title, input.url)
     );
 
     this.bindElementToDialog<MediaSectionInput>(
