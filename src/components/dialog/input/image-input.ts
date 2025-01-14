@@ -1,4 +1,4 @@
-import { on, qs } from "../../../utils/helper.js";
+import { focusInput, on, qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
 import { MediaData } from "../dialog.js";
 
@@ -15,7 +15,7 @@ export class ImageSectionInput
   constructor() {
     super(`
        <div class="input__section">
-         <p class="input__title">Add Media</p>
+         <p class="input__title">Add Image</p>
          <label>
            Title
            <input type="text" placeholder="please enter a title..." name="title" />
@@ -38,10 +38,7 @@ export class ImageSectionInput
   }
 
   bindEvents() {
-    requestAnimationFrame(() => {
-      const titleInput = qs<HTMLInputElement>("[name=title]", this.element);
-      titleInput.focus();
-    });
+    focusInput(this.element);
 
     on<HTMLInputElement, InputEvent>(this.fileInput, "change", () => {
       this.imageFile = this.fileInput.files?.[0];

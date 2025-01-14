@@ -1,4 +1,4 @@
-import { qs } from "../../../utils/helper.js";
+import { focus, qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
 import { TextData } from "../dialog.js";
 
@@ -21,10 +21,11 @@ export class TextSectionInput
        </div>
     `);
 
-    requestAnimationFrame(() => {
-      const titleInput = qs<HTMLInputElement>("[name=title]", this.element);
-      titleInput.focus();
-    });
+    this.bindEvents();
+  }
+
+  private bindEvents() {
+    focus("[name=title]", this.element);
   }
 
   get title() {

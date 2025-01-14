@@ -30,3 +30,13 @@ export function on<T extends HTMLElement, E extends Event>(
 
   target.addEventListener(eventName, listener);
 }
+
+export function focus(
+  selector: string = "[name=title]",
+  parent: HTMLElement
+): void {
+  requestAnimationFrame(() => {
+    const input = qs<HTMLInputElement>(selector, parent);
+    input.focus();
+  });
+}

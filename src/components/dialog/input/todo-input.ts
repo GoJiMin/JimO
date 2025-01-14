@@ -1,4 +1,4 @@
-import { on, qs, qsAll } from "../../../utils/helper.js";
+import { focus, on, qs, qsAll } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
 import { TextData } from "../dialog.js";
 
@@ -30,11 +30,12 @@ export class TodoSectionInput
     this.todoList = qs<HTMLUListElement>(".todo__inputContainer", this.element);
     this.addBtn = qs<HTMLButtonElement>(".todo-add", this.element);
 
-    this.focus("[name=title]");
     this.bindEvents();
   }
 
   bindEvents() {
+    focus("[name=title]", this.element);
+
     on<HTMLButtonElement, MouseEvent>(this.addBtn, "click", () => {
       this.createTask();
     });
@@ -52,7 +53,7 @@ export class TodoSectionInput
 
     const element = newItem.content.firstElementChild as HTMLLIElement;
 
-    this.focus("input", element);
+    focus("input", element);
 
     on<HTMLButtonElement, MouseEvent>(
       qs<HTMLButtonElement>(".todo-remove", element),
@@ -61,13 +62,6 @@ export class TodoSectionInput
     );
 
     this.todoList.insertAdjacentElement("beforeend", element);
-  }
-
-  private focus(selector: string, parent: HTMLElement = this.element) {
-    requestAnimationFrame(() => {
-      const input = qs<HTMLInputElement>(selector, parent);
-      input.focus();
-    });
   }
 
   get title() {
