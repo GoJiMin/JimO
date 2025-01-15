@@ -1,6 +1,6 @@
-import { focus, qs } from "../../../utils/helper.js";
+import { focusInput, qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
-import { TextData } from "../dialog.js";
+import { TextData, ValidateState } from "../dialog.js";
 
 export class TextSectionInput
   extends BaseComponent<HTMLDivElement>
@@ -25,7 +25,7 @@ export class TextSectionInput
   }
 
   private bindEvents() {
-    focus("[name=title]", this.element);
+    focusInput(this.element);
   }
 
   get title() {
@@ -38,5 +38,17 @@ export class TextSectionInput
     const element = qs<HTMLTextAreaElement>("[name=body]", this.element);
 
     return element.value;
+  }
+
+  validate(): ValidateState {
+    if (!this.title.trim()) {
+      return { status: "error", reason: "제목을 입력해주세요." };
+    }
+
+    if (!this.body.trim()) {
+      return { status: "error", reason: "내용을 입력해주세요." };
+    }
+
+    return { status: "success" };
   }
 }

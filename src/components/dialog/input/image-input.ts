@@ -1,6 +1,6 @@
 import { focusInput, on, qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
-import { MediaData } from "../dialog.js";
+import { MediaData, ValidateState } from "../dialog.js";
 
 export class ImageSectionInput
   extends BaseComponent<HTMLDivElement>
@@ -37,7 +37,7 @@ export class ImageSectionInput
     this.bindEvents();
   }
 
-  bindEvents() {
+  private bindEvents() {
     focusInput(this.element);
 
     on<HTMLInputElement, InputEvent>(this.fileInput, "change", () => {
@@ -72,5 +72,17 @@ export class ImageSectionInput
 
   get url() {
     return this.fileURL || "";
+  }
+
+  validate(): ValidateState {
+    if (!this.title.trim()) {
+      return { status: "error", reason: "제목을 입력해주세요." };
+    }
+
+    if (!this.url.trim()) {
+      return { status: "error", reason: "이미지를 선택해주세요." };
+    }
+
+    return { status: "success" };
   }
 }

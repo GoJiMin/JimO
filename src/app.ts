@@ -3,6 +3,7 @@ import {
   InputDialog,
   MediaData,
   TextData,
+  Validator,
 } from "./components/dialog/dialog.js";
 import { ImageSectionInput } from "./components/dialog/input/image-input.js";
 import { MediaSectionInput } from "./components/dialog/input/media-input.js";
@@ -19,7 +20,9 @@ import {
 } from "./components/page/page.js";
 import { on, qs } from "./utils/helper.js";
 
-type inputComponentConstructor<T = (MediaData | TextData) & Component> = {
+type inputComponentConstructor<
+  T = (MediaData | TextData) & Component & Validator
+> = {
   new (): T;
 };
 
@@ -55,7 +58,9 @@ class App {
     );
   }
 
-  private bindElementToDialog<T extends (MediaData | TextData) & Component>(
+  private bindElementToDialog<
+    T extends (MediaData | TextData) & Component & Validator
+  >(
     selector: string,
     inputComponent: inputComponentConstructor<T>,
     makeSection: (input: T) => Component
@@ -73,6 +78,13 @@ class App {
       });
 
       dialog.setOnSubmitListener(() => {
+        const state = input.validate();
+
+        if (state.status === "error") {
+          alert(state.reason);
+          return;
+        }
+
         const section = makeSection(input);
         this.page.addChild(section);
 

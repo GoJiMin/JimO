@@ -16,6 +16,15 @@ export interface TextData {
   tasks?: string[];
 }
 
+export interface ValidateState {
+  status: "success" | "error";
+  reason?: string;
+}
+
+export interface Validator {
+  validate(): ValidateState;
+}
+
 export class InputDialog
   extends BaseComponent<HTMLElement>
   implements Composable

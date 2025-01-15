@@ -1,6 +1,6 @@
-import { focus, on, qs, qsAll } from "../../../utils/helper.js";
+import { focusInput, on, qs, qsAll } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
-import { TextData } from "../dialog.js";
+import { TextData, ValidateState } from "../dialog.js";
 
 export class TodoSectionInput
   extends BaseComponent<HTMLDivElement>
@@ -33,8 +33,8 @@ export class TodoSectionInput
     this.bindEvents();
   }
 
-  bindEvents() {
-    focus("[name=title]", this.element);
+  private bindEvents() {
+    focusInput(this.element);
 
     on<HTMLButtonElement, MouseEvent>(this.addBtn, "click", () => {
       this.createTask();
@@ -53,7 +53,7 @@ export class TodoSectionInput
 
     const element = newItem.content.firstElementChild as HTMLLIElement;
 
-    focus("input", element);
+    focusInput(element, "input");
 
     on<HTMLButtonElement, MouseEvent>(
       qs<HTMLButtonElement>(".todo-remove", element),
@@ -76,6 +76,18 @@ export class TodoSectionInput
       this.todoList
     );
 
-    return tasks.map((input) => input.value);
+    return tasks.map((input) => input.value).filter(Boolean);
+  }
+
+  validate(): ValidateState {
+    if (!this.title.trim()) {
+      return { status: "error", reason: "제목을 입력해주세요." };
+    }
+
+    if (this.tasks.length === 0) {
+      return { status: "error", reason: "리스트를 입력해주세요." };
+    }
+
+    return { status: "success" };
   }
 }

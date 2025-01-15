@@ -1,6 +1,6 @@
-import { focus, qs } from "../../../utils/helper.js";
+import { focusInput, qs } from "../../../utils/helper.js";
 import { BaseComponent } from "../../component.js";
-import { MediaData } from "../dialog.js";
+import { MediaData, ValidateState } from "../dialog.js";
 
 export class MediaSectionInput
   extends BaseComponent<HTMLDivElement>
@@ -25,7 +25,7 @@ export class MediaSectionInput
   }
 
   private bindEvents() {
-    focus("[name=title]", this.element);
+    focusInput(this.element);
   }
 
   get title() {
@@ -38,5 +38,17 @@ export class MediaSectionInput
     const element = qs<HTMLInputElement>("[name=url]", this.element);
 
     return element.value;
+  }
+
+  validate(): ValidateState {
+    if (!this.title.trim()) {
+      return { status: "error", reason: "제목을 입력해주세요." };
+    }
+
+    if (!this.url.trim()) {
+      return { status: "error", reason: "URL을 입력해주세요." };
+    }
+
+    return { status: "success" };
   }
 }
