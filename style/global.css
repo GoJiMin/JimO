@@ -346,6 +346,11 @@ h2 {
   font-size: var(--font-md);
 }
 
+/* ==== Drag and Drop ==== */
+.mute-children * {
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
   :root {
     /* font size */
