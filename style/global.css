@@ -296,6 +296,7 @@ h2 {
   border-radius: 8px;
   background: var(--color-light-white);
   box-shadow: 2px 2px 6px var(--color-border);
+  border: 3px solid transparent;
 }
 
 .page-item__body {
@@ -349,6 +350,24 @@ h2 {
 /* ==== Drag and Drop ==== */
 .mute-children * {
   pointer-events: none;
+}
+
+.dragging {
+  animation: drag_start 250ms;
+  opacity: 0.2;
+}
+
+.drop-area {
+  border: 3px dashed var(--color-light-grey);
+}
+
+@keyframes drag_start {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 
 @media (min-width: 768px) {
