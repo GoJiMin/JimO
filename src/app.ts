@@ -56,20 +56,6 @@ class App {
       TodoSectionInput,
       (input: TodoSectionInput) => new TodoComponent(input.title, input.tasks)
     );
-
-    this.page.addChild(new NoteComponent("Note Title-1", "Note Content-1"));
-    this.page.addChild(
-      new TodoComponent("오늘 할 일", [
-        "아침 먹기",
-        "점심 먹기",
-        "간식 먹기",
-        "저녁 먹기",
-      ])
-    );
-    this.page.addChild(
-      new ImageComponent("Image Title", "https://picsum.photos/800/400")
-    );
-    this.page.addChild(new NoteComponent("Note Title-2", "Note Content-2"));
   }
 
   private bindElementToDialog<

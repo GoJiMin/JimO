@@ -153,6 +153,18 @@ export class PageComponent
 
   private onDragOver(event: DragEvent) {
     event.preventDefault();
+
+    const scrollZone = 50;
+    const scrollSpeed = 5;
+    const { clientY } = event;
+
+    if (clientY < scrollZone) {
+      this.element.scrollBy({ top: -scrollSpeed, behavior: "smooth" });
+    }
+
+    if (clientY > window.innerHeight - scrollZone) {
+      this.element.scrollBy({ top: scrollSpeed, behavior: "smooth" });
+    }
   }
 
   private onDrop(event: DragEvent) {
